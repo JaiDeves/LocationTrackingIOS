@@ -1,0 +1,646 @@
+
+{
+    "geocoded_waypoints": [
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJTy2AJMwVrjsR1S36hr8y-GA",
+            "types": [
+                "establishment",
+                "finance",
+                "point_of_interest"
+            ]
+        },
+        {
+            "geocoder_status": "OK",
+            "place_id": "ChIJnRDyYjE-rjsRCRzkpvuoXRI",
+            "types": [
+                "establishment",
+                "hindu_temple",
+                "place_of_worship",
+                "point_of_interest"
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "bounds": {
+                "northeast": {
+                    "lat": 12.926661,
+                    "lng": 77.6476023
+                },
+                "southwest": {
+                    "lat": 12.9049341,
+                    "lng": 77.54630109999999
+                }
+            },
+            "copyrights": "Map data ©2018 Google",
+            "legs": [
+                {
+                    "distance": {
+                        "text": "14.2 km",
+                        "value": 14158
+                    },
+                    "duration": {
+                        "text": "45 mins",
+                        "value": 2712
+                    },
+                    "end_address": "Ittamadu, Banashankari 3rd Stage, Banashankari, J C Nagar, Karnataka 560050, India",
+                    "end_location": {
+                        "lat": 12.9255006,
+                        "lng": 77.5467783
+                    },
+                    "start_address": "Site No 2580, Spandana, Shop No, 9, 27th Main Rd, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102, India",
+                    "start_location": {
+                        "lat": 12.9080919,
+                        "lng": 77.6476023
+                    },
+                    "steps": [
+                        {
+                            "distance": {
+                                "text": "20 m",
+                                "value": 20
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 7
+                            },
+                            "end_location": {
+                                "lat": 12.9081142,
+                                "lng": 77.6474228
+                            },
+                            "html_instructions": "Head <b>west</b> on <b>23rd A Cross Rd</b> toward <b>22nd B Main Rd</b>",
+                            "polyline": {
+                                "points": "qbxmAop|xMCb@"
+                            },
+                            "start_location": {
+                                "lat": 12.9080919,
+                                "lng": 77.6476023
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "78 m",
+                                "value": 78
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 53
+                            },
+                            "end_location": {
+                                "lat": 12.9088103,
+                                "lng": 77.64752059999999
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>22nd B Main Rd</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "ubxmAko|xM{@KoAG"
+                            },
+                            "start_location": {
+                                "lat": 12.9081142,
+                                "lng": 77.6474228
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "35 m",
+                                "value": 35
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 16
+                            },
+                            "end_location": {
+                                "lat": 12.9088705,
+                                "lng": 77.6472026
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>22nd Cross Rd</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "agxmA_p|xMK~@"
+                            },
+                            "start_location": {
+                                "lat": 12.9088103,
+                                "lng": 77.64752059999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 342
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 68
+                            },
+                            "end_location": {
+                                "lat": 12.9119361,
+                                "lng": 77.6470049
+                            },
+                            "html_instructions": "Turn <b>right</b> at the 1st cross street onto <b>22nd Main Rd</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "mgxmA_n|xMaBIiCJqADaBHeET"
+                            },
+                            "start_location": {
+                                "lat": 12.9088705,
+                                "lng": 77.6472026
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.6 km",
+                                "value": 1584
+                            },
+                            "duration": {
+                                "text": "5 mins",
+                                "value": 291
+                            },
+                            "end_location": {
+                                "lat": 12.9124311,
+                                "lng": 77.63240620000001
+                            },
+                            "html_instructions": "Turn <b>left</b> after the water (on the left)<div style=\"font-size:0.9em\">Pass by Gnan Srishti School of Excellence (on the right)</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "szxmAwl|xMG`AEv@E`@Af@OzDG|ACx@?j@AxG?bC?hAKbJEfFChCAvFA^C|AEzAA`BC`A?j@C|BAxA?jC@|A"
+                            },
+                            "start_location": {
+                                "lat": 12.9119361,
+                                "lng": 77.6470049
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.5 km",
+                                "value": 451
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 108
+                            },
+                            "end_location": {
+                                "lat": 12.9164815,
+                                "lng": 77.63227329999999
+                            },
+                            "html_instructions": "Turn <b>right</b> after SURYA HOMOEO CLINIC &amp; PHARMA (on the left)<div style=\"font-size:0.9em\">Pass by Food Magic (on the left in 350&nbsp;m)</div>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "u}xmAqqyxM_@@{ABk@Bq@@q@@eCD[F_C@cA?uB@m@ASA"
+                            },
+                            "start_location": {
+                                "lat": 12.9124311,
+                                "lng": 77.63240620000001
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.7 km",
+                                "value": 1696
+                            },
+                            "duration": {
+                                "text": "7 mins",
+                                "value": 431
+                            },
+                            "end_location": {
+                                "lat": 12.9161958,
+                                "lng": 77.6169474
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>100 Feet Ring Rd</b>/<b>Outer Ring Rd</b>/<b>NH 44</b><div style=\"font-size:0.9em\">Continue to follow 100 Feet Ring Rd/Outer Ring Rd</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "_wymAupyxMIlBe@pNCzA?J?HALAHCJ[fBw@fEy@tDALCLCNCNALAJAL?LAd@?r@?d@Bd@@b@Dl@T~BPxAJh@DLLl@ZbBr@`DFXPx@TdARdAHZFb@Dd@Hl@@H?D@F?H?P@xB@|ABhABzAAdA"
+                            },
+                            "start_location": {
+                                "lat": 12.9164815,
+                                "lng": 77.63227329999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 121
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 29
+                            },
+                            "end_location": {
+                                "lat": 12.9152625,
+                                "lng": 77.61638099999999
+                            },
+                            "html_instructions": "Turn <b>left</b> toward <b>Tank Shore Rd</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "guymA}pvxMPFLDf@TtAz@\\P"
+                            },
+                            "start_location": {
+                                "lat": 12.9161958,
+                                "lng": 77.6169474
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.4 km",
+                                "value": 354
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 58
+                            },
+                            "end_location": {
+                                "lat": 12.9121227,
+                                "lng": 77.6158665
+                            },
+                            "html_instructions": "Continue onto <b>Tank Shore Rd</b><div style=\"font-size:0.9em\">Drive along the lake (on the left)</div>",
+                            "polyline": {
+                                "points": "koymAkmvxMF@RFB?D?|Gb@zBXrD\\"
+                            },
+                            "start_location": {
+                                "lat": 12.9152625,
+                                "lng": 77.61638099999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 103
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 18
+                            },
+                            "end_location": {
+                                "lat": 12.9122597,
+                                "lng": 77.6149312
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>4th Cross Rd</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "w{xmAejvxMO~AKzA"
+                            },
+                            "start_location": {
+                                "lat": 12.9121227,
+                                "lng": 77.6158665
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.8 km",
+                                "value": 1806
+                            },
+                            "duration": {
+                                "text": "5 mins",
+                                "value": 273
+                            },
+                            "end_location": {
+                                "lat": 12.9057759,
+                                "lng": 77.60384479999999
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>29th Main Rd</b><div style=\"font-size:0.9em\">Pass by Kapse Moduler (on the right in 950&nbsp;m)</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "s|xmAidvxMX@~AVnDn@fBLr@BRBLDTJv@Vt@X^HVJVH`@Lh@ND@LDr@TjIfCn@VlEnAD@DBDBBB@BBD@B?@@D?FADAVK~@I~@?BI`AEv@Ep@Ej@Cf@OvAGZM`@}@xBKTGTCTAN?TBRDPBLDVD`@DjALfD?DBf@?b@Al@I|ACd@EnBClAInA"
+                            },
+                            "start_location": {
+                                "lat": 12.9122597,
+                                "lng": 77.6149312
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "35 m",
+                                "value": 35
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 7
+                            },
+                            "end_location": {
+                                "lat": 12.9054613,
+                                "lng": 77.60382919999999
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>4th Main Rd</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "ctwmA__txM~@@"
+                            },
+                            "start_location": {
+                                "lat": 12.9057759,
+                                "lng": 77.60384479999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 202
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 36
+                            },
+                            "end_location": {
+                                "lat": 12.905461,
+                                "lng": 77.6019687
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>7th Cross Rd</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "crwmA}~sxM@lBAlF?V"
+                            },
+                            "start_location": {
+                                "lat": 12.9054613,
+                                "lng": 77.60382919999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.3 km",
+                                "value": 261
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 106
+                            },
+                            "end_location": {
+                                "lat": 12.9072551,
+                                "lng": 77.6005157
+                            },
+                            "html_instructions": "Turn <b>right</b> after SAKHII HOSPITAL (on the left)<div style=\"font-size:0.9em\">Pass by Shades Sleepwell Gallery (on the right)</div>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "crwmAissxM@TIBC@IBODKBIDIDGFKHc@Za@ZgE`D"
+                            },
+                            "start_location": {
+                                "lat": 12.905461,
+                                "lng": 77.6019687
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.5 km",
+                                "value": 510
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 74
+                            },
+                            "end_location": {
+                                "lat": 12.9061056,
+                                "lng": 77.5959955
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>100 Feet Ring Rd</b>/<b>15th Cross Rd</b>/<b>Outer Ring Rd</b><div style=\"font-size:0.9em\">Pass by HDFC Bank (on the left)</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "k}wmAgjsxMhBrH^tBLn@Z~An@rDDPBN?\\?RATEn@"
+                            },
+                            "start_location": {
+                                "lat": 12.9072551,
+                                "lng": 77.6005157
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.2 km",
+                                "value": 243
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 21
+                            },
+                            "end_location": {
+                                "lat": 12.9062024,
+                                "lng": 77.5937708
+                            },
+                            "html_instructions": "Keep <b>right</b> to continue on <b>Delmia Flyover Rd</b>",
+                            "maneuver": "keep-right",
+                            "polyline": {
+                                "points": "evwmA_nrxMEXEd@ItAElB@~A?`@@`@DT"
+                            },
+                            "start_location": {
+                                "lat": 12.9061056,
+                                "lng": 77.5959955
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "3.2 km",
+                                "value": 3208
+                            },
+                            "duration": {
+                                "text": "10 mins",
+                                "value": 587
+                            },
+                            "end_location": {
+                                "lat": 12.9125272,
+                                "lng": 77.56707969999999
+                            },
+                            "html_instructions": "Slight <b>right</b> onto <b>100 Feet Ring Rd</b>/<b>15th Cross Rd</b>/<b>Outer Ring Rd</b><div style=\"font-size:0.9em\">Continue to follow 100 Feet Ring Rd/Outer Ring Rd</div><div style=\"font-size:0.9em\">Pass by Starbucks Coffee (on the left)</div>",
+                            "maneuver": "turn-slight-right",
+                            "polyline": {
+                                "points": "wvwmAa`rxMGz@?XCdCAtC?dH?t@A~@C~HAxB?n@AzG?v@?v@EzBG~LBzL?n@ClEAjCC|AA|EAnDApADdBEvF?j@AZ@BC`@Ah@EpAEf@Eb@K^MT]d@c@b@m@j@WTaAbAk@d@u@f@_Aj@KFQNOHq@d@aAr@yGlF{DtCmA|@e@\\u@d@"
+                            },
+                            "start_location": {
+                                "lat": 12.9062024,
+                                "lng": 77.5937708
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.1 km",
+                                "value": 1102
+                            },
+                            "duration": {
+                                "text": "2 mins",
+                                "value": 112
+                            },
+                            "end_location": {
+                                "lat": 12.9208044,
+                                "lng": 77.5619308
+                            },
+                            "html_instructions": "Keep <b>right</b> to continue on <b>Kaderanahalli Underpass</b>/<b>Outer Ring Rd</b><div style=\"font-size:0.9em\">Continue to follow Outer Ring Rd</div>",
+                            "maneuver": "keep-right",
+                            "polyline": {
+                                "points": "i~xmAgylxMoDrCs@h@GD_@VKFc@RIDg@N[JyBn@i@Lg@RE@GBo@PyBl@WFWJk@P{@VM@gBj@A?m@Pm@Ra@LQHQFc@VWN]X_@XYNMJEDIJGFYf@GP_@x@a@r@QZSRWLWLQJo@N"
+                            },
+                            "start_location": {
+                                "lat": 12.9125272,
+                                "lng": 77.56707969999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.4 km",
+                                "value": 419
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 36
+                            },
+                            "end_location": {
+                                "lat": 12.9221839,
+                                "lng": 77.5585665
+                            },
+                            "html_instructions": "Continue straight onto <b>The Kittur Rani Chennamma Flyover</b>",
+                            "maneuver": "straight",
+                            "polyline": {
+                                "points": "_rzmAaykxM[DOBMF[RSNUXMPSh@YlBIt@?DI|@Cb@Ez@Gp@Ml@c@jB"
+                            },
+                            "start_location": {
+                                "lat": 12.9208044,
+                                "lng": 77.5619308
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "1.3 km",
+                                "value": 1262
+                            },
+                            "duration": {
+                                "text": "4 mins",
+                                "value": 250
+                            },
+                            "end_location": {
+                                "lat": 12.926661,
+                                "lng": 77.54795469999999
+                            },
+                            "html_instructions": "Merge onto <b>Outer Ring Rd</b><div style=\"font-size:0.9em\">Pass by 1947 Restaurant (on the left)</div>",
+                            "maneuver": "merge",
+                            "polyline": {
+                                "points": "szzmAadkxMCBEJa@fB{A~GOj@qBjJYlAOj@IZ[xAOr@}@|D[nAELk@zACF}@nB}@nBGN[l@_@z@A@Q^EFEHMV]j@GJKPQVW\\[d@_@j@"
+                            },
+                            "start_location": {
+                                "lat": 12.9221839,
+                                "lng": 77.5585665
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "0.1 km",
+                                "value": 127
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 46
+                            },
+                            "end_location": {
+                                "lat": 12.9258016,
+                                "lng": 77.5471879
+                            },
+                            "html_instructions": "Turn <b>left</b> toward <b>3rd Cross Rd</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "sv{mAuaixMpAbAl@l@j@d@"
+                            },
+                            "start_location": {
+                                "lat": 12.926661,
+                                "lng": 77.54795469999999
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "81 m",
+                                "value": 81
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 21
+                            },
+                            "end_location": {
+                                "lat": 12.9261955,
+                                "lng": 77.5465667
+                            },
+                            "html_instructions": "Turn <b>right</b> onto <b>3rd Cross Rd</b>",
+                            "maneuver": "turn-right",
+                            "polyline": {
+                                "points": "gq{mA}|hxMMN_@d@IJITK`@A@"
+                            },
+                            "start_location": {
+                                "lat": 12.9258016,
+                                "lng": 77.5471879
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "62 m",
+                                "value": 62
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 32
+                            },
+                            "end_location": {
+                                "lat": 12.9257049,
+                                "lng": 77.54630109999999
+                            },
+                            "html_instructions": "Turn <b>left</b> toward <b>5th Cross Rd</b>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "ws{mAayhxMl@^t@T"
+                            },
+                            "start_location": {
+                                "lat": 12.9261955,
+                                "lng": 77.5465667
+                            },
+                            "travel_mode": "DRIVING"
+                        },
+                        {
+                            "distance": {
+                                "text": "56 m",
+                                "value": 56
+                            },
+                            "duration": {
+                                "text": "1 min",
+                                "value": 32
+                            },
+                            "end_location": {
+                                "lat": 12.9255006,
+                                "lng": 77.5467783
+                            },
+                            "html_instructions": "Turn <b>left</b> onto <b>5th Cross Rd</b><div style=\"font-size:0.9em\">Destination will be on the right</div>",
+                            "maneuver": "turn-left",
+                            "polyline": {
+                                "points": "sp{mAkwhxMf@_B"
+                            },
+                            "start_location": {
+                                "lat": 12.9257049,
+                                "lng": 77.54630109999999
+                            },
+                            "travel_mode": "DRIVING"
+                        }
+                    ],
+                    "traffic_speed_entry": [],
+                    "via_waypoint": []
+                }
+            ],
+            "overview_polyline": {
+                "points": "qbxmAop|xMCb@{@KoAGK~@aBIiCJsDNeETG`AKxA]zJArOQjQE`KMzHIdI@hF{BDuGL[F_C@yD@aACo@~QE~ByAdIcA`FIv@AlCDhAZlD\\bCRz@nAdGXrAz@jEPbBB|CDfD@`D^Lf@TtAz@d@RVFbHb@zBXrD\\[zDxBXnDn@fBLfAFpCbAbFzAjIfCn@VrEpAPNFPOdBY|DK|AS~BU|@iAnCKj@Ad@RjAJlBLlDBjAKjCItCM|C~@@@lBAdG@TIBMD[HSJyAhAgE`DhBrHl@dDtAtH?p@GdAK~@ItAElB@`CFv@GtAEzG?zIE~JC|NErDG~LBzLC|FEhFClKApADdBEvFAfAI`DKjAYt@]d@c@b@eA`AaAbAk@d@uBrA_BfA{I`HiGrE{AbAcF|Dg@\\o@ZgEpA_Bf@yErA}EvA_Cr@c@P{@f@eBnAOPa@n@g@jAs@nASRWLi@XkAT]Jo@b@c@j@Sh@YlBIz@[nEq@xCIN_G~W_E~Po@bB{B~EeAzBk@hAcA`Bs@bA_@j@pAbAxArAm@t@S`@Mb@l@^t@Tf@_B"
+            },
+            "summary": "100 Feet Ring Rd/Outer Ring Rd",
+            "warnings": [],
+            "waypoint_order": []
+        }
+    ],
+    "status": "OK"
+}
