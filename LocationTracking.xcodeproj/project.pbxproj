@@ -11,6 +11,7 @@
 		18211E142174A47B0024982B /* HSRTOBAN.json in Resources */ = {isa = PBXBuildFile; fileRef = 18211E132174A47B0024982B /* HSRTOBAN.json */; };
 		18211E162174A7FD0024982B /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 18211E152174A7FD0024982B /* coordinates.json */; };
 		18211E182174A8420024982B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18211E172174A8420024982B /* RootViewController.swift */; };
+		1847BA0B217F290A008718BC /* OlaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1847BA0A217F290A008718BC /* OlaVC.swift */; };
 		18F6AB3B2170A3220088D816 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6AB3A2170A3220088D816 /* AppDelegate.swift */; };
 		18F6AB3D2170A3220088D816 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F6AB3C2170A3220088D816 /* ViewController.swift */; };
 		18F6AB402170A3220088D816 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18F6AB3E2170A3220088D816 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		18211E132174A47B0024982B /* HSRTOBAN.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HSRTOBAN.json; sourceTree = "<group>"; };
 		18211E152174A7FD0024982B /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
 		18211E172174A8420024982B /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		1847BA0A217F290A008718BC /* OlaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OlaVC.swift; sourceTree = "<group>"; };
 		18F6AB372170A3220088D816 /* LocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F6AB3A2170A3220088D816 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18F6AB3C2170A3220088D816 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				18F6AB462170A3230088D816 /* Info.plist */,
 				18211E132174A47B0024982B /* HSRTOBAN.json */,
 				18211E172174A8420024982B /* RootViewController.swift */,
+				1847BA0A217F290A008718BC /* OlaVC.swift */,
 			);
 			path = LocationTracking;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				18F6AB3B2170A3220088D816 /* AppDelegate.swift in Sources */,
 				18211E12217495680024982B /* ARCarMovement.swift in Sources */,
 				18F6AB4D2170B4730088D816 /* TrackVC.swift in Sources */,
+				1847BA0B217F290A008718BC /* OlaVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,143 +1,113 @@
 //
-//  ViewController.swift
+//  OlaVC.swift
 //  LocationTracking
 //
-//  Created by apple on 10/12/18.
+//  Created by apple on 10/23/18.
 //  Copyright © 2018 apple. All rights reserved.
 //
+
 
 import UIKit
 import GoogleMaps
 import SwiftLocation
 import GooglePlaces
 
-let otherKey = "AIzaSyDdAg9m9iZ4ch4ivTIVERX2j96UkkimYQc"
 
-class ViewController: UIViewController {
+class OlaVC: UIViewController {
 
-    @IBOutlet weak var stackViewBackground: UIView!
+    @IBOutlet weak var pickUp_txf: UITextField!
+    @IBOutlet weak var drop_txf: UITextField!
+    @IBOutlet weak var startTrip_btn: UIButton!
     @IBOutlet weak var mapView: GMSMapView!
     
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var startTripButton: UIButton!
-    
-    var isDemo = false
+    @IBOutlet weak var dropView: UIView!
+    @IBOutlet weak var pickUpView: UIView!
     private var locations = [CLLocation]()
     private var path = GMSMutablePath()
     private var polyline = GMSPolyline()
-    private var currentPositionMarker = GMSMarker()
+    private var pickUpMarker = GMSMarker()
+    private var dropMarker = GMSMarker()
     private var isFirstMessage = true
     let raceCarIcon = UIImage(named: "race_car")!
-    let currentLocationIcon = UIImage(named: "pin")!
-     var currentLocation:CLLocation?
+    let pickUpPinIcon = UIImage(named: "pickUpPin")!
+    let dropPinIcon = UIImage(named: "dropPin")!
+    
     var reverseGeocodeResponse:GMSReverseGeocodeResponse?
-    
-    @IBOutlet weak var from_txf: UITextField!
-    @IBOutlet weak var to_txf: UITextField!
-    
     
     var demoCoords:NSArray = NSArray()
     var selectedTxf:UITextField?
     var fromPlace:GMSPlace?
     var toPlace:GMSPlace?
-    var fromMarker:GMSMarker?
-    var toMarker:GMSMarker?
+    var pickUpLocation:CLLocation?
+    var dropLocation:CLLocation?
+    
+    
     let carMovement = ARCarMovement()
-    var oldCoord:CLLocationCoordinate2D?
-    var counter = 0
     
-    var timer = Timer()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()        
-        mapView.delegate  = self
-        from_txf.delegate = self
-        to_txf.delegate = self
-        mapView.settings.myLocationButton = true
-        carMovement.delegate = self
-        startTripButton.addTarget(self, action: #selector(startTripAction), for: .touchUpInside)
-        
-        if isDemo{
-            handleDemo()
-        }else{
-            getCurrentLocation()
+    var textFieldBackgroundColor:UIColor?
+    
+    
+    @IBAction func dropSelected(_ sender: Any) {
+        if dropLocation == nil{
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            present(autocompleteController, animated: true, completion: nil)
         }
+        if !startTrip_btn.isHidden{
+            textFieldSelected(drop_txf)
+        }
+    
     }
     
-    func handleDemo(){
-        guard isDemo else { return }
-
-        if let path = Bundle.main.path(forResource: "coordinates", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? NSArray{
-                    self.demoCoords = jsonResult
-                }
-            } catch {
-                // handle error
-                print(error)
+    
+    @IBAction func pickUpSelected(_ sender: Any) {
+        if !startTrip_btn.isHidden{
+            textFieldSelected(pickUp_txf)
+        }
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.delegate  = self
+        drop_txf.delegate = self
+        pickUp_txf.delegate = self
+        mapView.settings.myLocationButton = true
+        carMovement.delegate = self
+        startTrip_btn.addTarget(self, action: #selector(startTripAction), for: .touchUpInside)
+        getCurrentLocation()
+        textFieldBackgroundColor = dropView.backgroundColor
+        textFieldSelected(pickUp_txf)
+    }
+    
+    func textFieldSelected(_ textField:UITextField){
+        selectedTxf = textField
+        if textField == pickUp_txf{
+            pickUpView.backgroundColor = textFieldBackgroundColor
+            dropView.backgroundColor = textFieldBackgroundColor?.withAlphaComponent(0.5)
+            if let location = pickUpLocation{
+                updateMapFrame(newLocation: location, zoom: 17)
+            }
+            
+        }else{
+            dropView.backgroundColor = textFieldBackgroundColor
+            pickUpView.backgroundColor = textFieldBackgroundColor?.withAlphaComponent(0.5)
+            if let location = dropLocation{
+                updateMapFrame(newLocation: location, zoom: 17)
             }
         }
         
-        oldCoord = CLLocationCoordinate2D(latitude: 40.7416627, longitude: -74.0049708)
-        updateMapFrame(newLocation: CLLocation(latitude: 40.7416627, longitude: -74.0049708), zoom: 14)
-
-        
-        self.currentPositionMarker =  GMSMarker(position: oldCoord!)
-        self.currentPositionMarker.icon = raceCarIcon
-        self.currentPositionMarker.map = self.mapView
-        
-        //set counter value 0
-        //
-        self.counter = 0;
-        
-        //start the timer, change the interval based on your requirement
-        //
-        self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(handleTimer(_:)), userInfo: nil, repeats: true)
-        self.timer.fire()
-        
-        let lat = (self.demoCoords.lastObject as! [String:Double])["lat"]!
-        let long = (self.demoCoords.lastObject as! [String:Double])["long"]!
-        let newCoord = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        getPolylineRouteForDemo(from: oldCoord!, to: newCoord)
-        stackViewBackground.isHidden = true
-        stackView.isHidden = true
-        startTripButton.isHidden = true
     }
+   
     
-    
-    @objc func handleTimer(_ timer:Timer){
-        
-        if (self.counter < self.demoCoords.count) {
-            let lat = (self.demoCoords[self.counter] as! [String:Double])["lat"]!
-            let long = (self.demoCoords[self.counter] as! [String:Double])["long"]!
-            
-            let newCoord = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            /**
-             *  You need to pass the created/updating marker, old & new coordinate, mapView and bearing value from backend
-             *  to turn properly. Here coordinates json files is used without new bearing value. So that
-             *  bearing won't work as expected.
-             */
-            self.carMovement.ARCarMovement(marker: self.currentPositionMarker, oldCoordinate: self.oldCoord!, newCoordinate: newCoord, mapView: self.mapView, bearing: 0)
-            //instead value 0, pass latest bearing value from backend
-            
-            self.oldCoord = newCoord
-            self.counter = self.counter + 1; //increase the value to get all index position from array
-        }
-        else {
-            self.timer.invalidate()
-            self.timer = Timer()
-        }
-    }
-    
-   @objc func startTripAction(){
-        if  toPlace != nil || reverseGeocodeResponse != nil{
+    @objc func startTripAction(){
+        if  dropLocation != nil{
             trackUser()
-            startTripButton.isHidden = true
+            startTrip_btn.isHidden = true
+            getPolylineRoute(from: pickUpLocation!.coordinate, to: dropLocation!.coordinate)
         }else{
-         let alertVC = UIAlertController(title: "", message: "Please enter Destination", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "", message: "Please enter Destination", preferredStyle: .alert)
             let okAction  = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertVC.addAction(okAction)
             self.present(alertVC, animated: true, completion: nil)
@@ -149,7 +119,7 @@ class ViewController: UIViewController {
         Locator.currentPosition(accuracy: .neighborhood, onSuccess: { (location) -> (Void) in
             self.locations  = []
             self.locations.append(location)
-//            self.updateOverlay(currentPosition: location)
+            //            self.updateOverlay(currentPosition: location)
             // Update the map frame
             self.updateMapFrame(newLocation: location, zoom: 17.0)
             // Update Marker position
@@ -165,26 +135,26 @@ class ViewController: UIViewController {
             print(location)
             
             if let lastLocation = self.locations.last{
-//                if lastLocation.distance(from: location) > 10{
+                //                if lastLocation.distance(from: location) > 10{
                 
-                    
-                    // Drawing the line
-//                    self.updateOverlay(currentPosition: location)
-                    // Update the map frame
-                    self.updateMapFrame(newLocation: location, zoom: 17.0)
-                    // Update Marker position
-                    self.updateCurrentPositionMarker(currentLocation: location)
-                    
-                    self.locations.append(location)
-//                }
+                
+                // Drawing the line
+                //                    self.updateOverlay(currentPosition: location)
+                // Update the map frame
+                self.updateMapFrame(newLocation: location, zoom: 17.0)
+                // Update Marker position
+                self.updateCurrentPositionMarker(currentLocation: location)
+                
+                self.locations.append(location)
+                //                }
             }else{
                 self.locations.append(location)
                 if (self.isFirstMessage) {
-//                    self.initializePolylineAnnotation()
+                    //                    self.initializePolylineAnnotation()
                     self.isFirstMessage = false
                 }
                 // Drawing the line
-//                self.updateOverlay(currentPosition: location)
+                //                self.updateOverlay(currentPosition: location)
                 // Update the map frame
                 self.updateMapFrame(newLocation: location, zoom: 17.0)
                 // Update Marker position
@@ -195,7 +165,7 @@ class ViewController: UIViewController {
             
         }
     }
-
+    
     func initializePolylineAnnotation() {
         self.polyline.strokeColor = UIColor.blue
         self.polyline.strokeWidth = 5.0
@@ -213,43 +183,50 @@ class ViewController: UIViewController {
     }
     
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
-//        let head = currentLocation.course
-//        self.currentPositionMarker.rotation = head
-        if startTripButton.isHidden == true{
+        //        let head = currentLocation.course
+        //        self.currentPositionMarker.rotation = head
+        if startTrip_btn.isHidden == true{
             if let last = locations.last{
-                carMovement.ARCarMovement(marker: currentPositionMarker, oldCoordinate: last.coordinate, newCoordinate: currentLocation.coordinate, mapView: mapView, bearing: 0)
+//                carMovement.ARCarMovement(marker: currentPositionMarker, oldCoordinate: last.coordinate, newCoordinate: currentLocation.coordinate, mapView: mapView, bearing: 0)
             }
         }else{
-            self.currentPositionMarker =  GMSMarker(position: currentLocation.coordinate)
-            self.currentPositionMarker.icon = currentLocationIcon
-            self.currentPositionMarker.map = self.mapView
+            if selectedTxf == drop_txf{
+                self.dropMarker =  GMSMarker(position: currentLocation.coordinate)
+                self.dropMarker.icon = dropPinIcon
+                self.dropMarker.map = self.mapView
+            }else{
+                self.pickUpMarker =  GMSMarker(position: currentLocation.coordinate)
+                self.pickUpMarker.icon = pickUpPinIcon
+                self.pickUpMarker.map = self.mapView
+            }
+            
         }
     }
     
     
-    func addMarker(place:GMSPlace){
-        let marker = GMSMarker(position: place.coordinate)
-        marker.title = place.name
-        marker.map = mapView
-        if place == fromPlace{
-            fromMarker?.map = nil
-            fromMarker = marker
-            marker.icon = GMSMarker.markerImage(with: .green)
-        }else{
-            toMarker?.map = nil
-            toMarker = marker
-        }
-    }
+//    func addMarker(place:GMSPlace){
+//        let marker = GMSMarker(position: place.coordinate)
+//        marker.title = place.name
+//        marker.map = mapView
+//        if place == fromPlace{
+//            fromMarker?.map = nil
+//            fromMarker = marker
+//            marker.icon = GMSMarker.markerImage(with: .green)
+//        }else{
+//            toMarker?.map = nil
+//            toMarker = marker
+//        }
+//    }
     
     func reverseGeoCode(coordinate:CLLocationCoordinate2D){
-//        let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinate.latitude),\(coordinate.longitude)&key=\(otherKey)"
+        //        let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinate.latitude),\(coordinate.longitude)&key=\(otherKey)"
         GMSGeocoder().reverseGeocodeCoordinate(coordinate) { (response, error) in
             print(response.debugDescription)
-            self.to_txf.text = response?.firstResult()?.lines?.first
+            self.selectedTxf?.text = response?.firstResult()?.lines?.first
             self.reverseGeocodeResponse = response
-//            GMSPlacesClient().lookUpPlaceID("", callback: { (place, error) in
-//                self.toPlace = place
-//            })
+            //            GMSPlacesClient().lookUpPlaceID("", callback: { (place, error) in
+            //                self.toPlace = place
+            //            })
         }
     }
     func getPolylineRouteForDemo(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){
@@ -282,7 +259,7 @@ class ViewController: UIViewController {
             }catch {
                 print("error in JSONSerialization")
             }
-
+            
         }
     }
     
@@ -302,7 +279,7 @@ class ViewController: UIViewController {
                 do {
                     print(String.init(data: data!, encoding: String.Encoding.utf8))
                     if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]{
-//                        print(json)
+                        //                        print(json)
                         guard let routes = json["routes"] as? NSArray else {
                             return
                         }
@@ -313,12 +290,12 @@ class ViewController: UIViewController {
                             
                             let points = dictPolyline?.object(forKey: "points") as? String
                             
-                            self.showPath(polyStr: points!)
-                            
                             DispatchQueue.main.async {
+                                self.showPath(polyStr: points!)
                                 let bounds = GMSCoordinateBounds(coordinate: source, coordinate: destination)
                                 let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 170, left: 30, bottom: 30, right: 30))
                                 self.mapView!.moveCamera(update)
+                                self.pickUpMarker.icon = self.raceCarIcon
                             }
                         }
                         else {
@@ -346,54 +323,70 @@ class ViewController: UIViewController {
         polyline.strokeColor = UIColor.blue
         polyline.map = mapView // Your map view
     }
-
+    
 }
-extension ViewController:ARCarMovementDelegate{
+extension OlaVC:ARCarMovementDelegate{
     func ARCarMovementMoved(_ Marker: GMSMarker) {
-        self.currentPositionMarker =  Marker
-        self.currentPositionMarker.icon = raceCarIcon
-        self.currentPositionMarker.map = self.mapView
+//        self.currentPositionMarker =  Marker
+//        self.currentPositionMarker.icon = raceCarIcon
+//        self.currentPositionMarker.map = self.mapView
     }
 }
 
 
-extension ViewController:GMSMapViewDelegate{
+extension OlaVC:GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        currentPositionMarker.position = position.target
-        reverseGeoCode(coordinate: position.target)
+        if !startTrip_btn.isHidden{
+            if selectedTxf == drop_txf{
+                dropMarker.position = position.target
+                dropLocation = CLLocation(latitude: position.target.latitude, longitude:position.target.longitude)
+            }else{
+                pickUpMarker.position = position.target
+                pickUpLocation = CLLocation(latitude: position.target.latitude, longitude:position.target.longitude)
+            }
+            reverseGeoCode(coordinate: position.target)
+        }
+        
     }
+    
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
         
     }
 }
 
-extension ViewController:UITextFieldDelegate{
+extension OlaVC:UITextFieldDelegate{
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let autocompleteController = GMSAutocompleteViewController()
-        autocompleteController.delegate = self
-        present(autocompleteController, animated: true, completion: nil)
-        selectedTxf = textField
+        if !startTrip_btn.isHidden{
+            let autocompleteController = GMSAutocompleteViewController()
+            autocompleteController.delegate = self
+            present(autocompleteController, animated: true, completion: nil)
+            selectedTxf = textField
+            textFieldSelected(textField)
+        }        
         return false
     }
 }
 
 
-extension ViewController: GMSAutocompleteViewControllerDelegate {
+extension OlaVC: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         print("Place name: \(place.name)")
         print("Place address: \(place.formattedAddress)")
         print("Place attributions: \(place.attributions)")
-        if selectedTxf == from_txf{
-            fromPlace = place
-            updateMapFrame(newLocation: CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude), zoom: 17.0)
-        }else{
+        if selectedTxf == drop_txf{
             toPlace = place
-            getPolylineRoute(from: locations.first!.coordinate, to: toPlace!.coordinate)
+            dropLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        }else{
+            fromPlace = place
+            pickUpLocation = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            //            getPolylineRoute(from: locations.first!.coordinate, to: toPlace!.coordinate)
         }
-        addMarker(place: place)
+        updateMapFrame(newLocation: CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude), zoom: 17.0)
+        updateCurrentPositionMarker(currentLocation: CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude))
+        
         selectedTxf?.text = place.name
         dismiss(animated: true, completion: nil)
     }

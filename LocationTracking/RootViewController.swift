@@ -29,14 +29,15 @@ class RootViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if datasource[indexPath.row] == "Demo"{
+        if datasource[indexPath.row] == datasource[0]{
             let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             vc.isDemo = true
             self.navigationController?.pushViewController(vc, animated: true)
-        }else{
-            let vc = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            vc.isDemo = false
+        }else if datasource[indexPath.row] == datasource[1]{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "OlaVC") as! OlaVC
             self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            
         }
     }
 
