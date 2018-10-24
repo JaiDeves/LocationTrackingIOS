@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     private var currentPositionMarker = GMSMarker()
     private var isFirstMessage = true
     let raceCarIcon = UIImage(named: "race_car")!
-    let currentLocationIcon = UIImage(named: "pin")!
+    let currentLocationIcon = UIImage(named: "pickUpPin")!
      var currentLocation:CLLocation?
     var reverseGeocodeResponse:GMSReverseGeocodeResponse?
     
