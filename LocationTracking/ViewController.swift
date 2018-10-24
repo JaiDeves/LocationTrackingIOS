@@ -13,8 +13,9 @@ import GooglePlaces
 
 let otherKey = "AIzaSyDdAg9m9iZ4ch4ivTIVERX2j96UkkimYQc"
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
     @IBOutlet weak var stackViewBackground: UIView!
     @IBOutlet weak var mapView: GMSMapView!
     
@@ -27,10 +28,8 @@ class ViewController: UIViewController {
     private var polyline = GMSPolyline()
     private var currentPositionMarker = GMSMarker()
     private var isFirstMessage = true
-    let raceCarIcon = UIImage(named: "race_car")!
-    let currentLocationIcon = UIImage(named: "pickUpPin")!
-     var currentLocation:CLLocation?
-    var reverseGeocodeResponse:GMSReverseGeocodeResponse?
+    let raceCarIcon = UIImage(named: "race_car")
+    var currentLocation:CLLocation?
     
     @IBOutlet weak var from_txf: UITextField!
     @IBOutlet weak var to_txf: UITextField!
@@ -49,7 +48,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         mapView.delegate  = self
         from_txf.delegate = self
         to_txf.delegate = self
@@ -66,7 +65,7 @@ class ViewController: UIViewController {
     
     func handleDemo(){
         guard isDemo else { return }
-
+        
         if let path = Bundle.main.path(forResource: "coordinates", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
@@ -82,7 +81,7 @@ class ViewController: UIViewController {
         
         oldCoord = CLLocationCoordinate2D(latitude: 40.7416627, longitude: -74.0049708)
         updateMapFrame(newLocation: CLLocation(latitude: 40.7416627, longitude: -74.0049708), zoom: 14)
-
+        
         
         self.currentPositionMarker =  GMSMarker(position: oldCoord!)
         self.currentPositionMarker.icon = raceCarIcon
@@ -132,12 +131,12 @@ class ViewController: UIViewController {
         }
     }
     
-   @objc func startTripAction(){
-        if  toPlace != nil || reverseGeocodeResponse != nil{
+    @objc func startTripAction(){
+        if  toPlace != nil{
             trackUser()
             startTripButton.isHidden = true
         }else{
-         let alertVC = UIAlertController(title: "", message: "Please enter Destination", preferredStyle: .alert)
+            let alertVC = UIAlertController(title: "", message: "Please enter Destination", preferredStyle: .alert)
             let okAction  = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertVC.addAction(okAction)
             self.present(alertVC, animated: true, completion: nil)
@@ -149,7 +148,7 @@ class ViewController: UIViewController {
         Locator.currentPosition(accuracy: .neighborhood, onSuccess: { (location) -> (Void) in
             self.locations  = []
             self.locations.append(location)
-//            self.updateOverlay(currentPosition: location)
+            //            self.updateOverlay(currentPosition: location)
             // Update the map frame
             self.updateMapFrame(newLocation: location, zoom: 17.0)
             // Update Marker position
@@ -165,26 +164,26 @@ class ViewController: UIViewController {
             print(location)
             
             if let lastLocation = self.locations.last{
-//                if lastLocation.distance(from: location) > 10{
+                //                if lastLocation.distance(from: location) > 10{
                 
-                    
-                    // Drawing the line
-//                    self.updateOverlay(currentPosition: location)
-                    // Update the map frame
-                    self.updateMapFrame(newLocation: location, zoom: 17.0)
-                    // Update Marker position
-                    self.updateCurrentPositionMarker(currentLocation: location)
-                    
-                    self.locations.append(location)
-//                }
+                
+                // Drawing the line
+                //                    self.updateOverlay(currentPosition: location)
+                // Update the map frame
+                self.updateMapFrame(newLocation: location, zoom: 17.0)
+                // Update Marker position
+                self.updateCurrentPositionMarker(currentLocation: location)
+                
+                self.locations.append(location)
+                //                }
             }else{
                 self.locations.append(location)
                 if (self.isFirstMessage) {
-//                    self.initializePolylineAnnotation()
+                    //                    self.initializePolylineAnnotation()
                     self.isFirstMessage = false
                 }
                 // Drawing the line
-//                self.updateOverlay(currentPosition: location)
+                //                self.updateOverlay(currentPosition: location)
                 // Update the map frame
                 self.updateMapFrame(newLocation: location, zoom: 17.0)
                 // Update Marker position
@@ -195,7 +194,7 @@ class ViewController: UIViewController {
             
         }
     }
-
+    
     func initializePolylineAnnotation() {
         self.polyline.strokeColor = UIColor.blue
         self.polyline.strokeWidth = 5.0
@@ -213,19 +212,13 @@ class ViewController: UIViewController {
     }
     
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
-//        let head = currentLocation.course
-//        self.currentPositionMarker.rotation = head
-        if startTripButton.isHidden == true{
-            if let last = locations.last{
-                carMovement.ARCarMovement(marker: currentPositionMarker, oldCoordinate: last.coordinate, newCoordinate: currentLocation.coordinate, mapView: mapView, bearing: 0)
-            }
-        }else{
-            self.currentPositionMarker =  GMSMarker(position: currentLocation.coordinate)
-            self.currentPositionMarker.icon = currentLocationIcon
-            self.currentPositionMarker.map = self.mapView
+        //        let head = currentLocation.course
+        //        self.currentPositionMarker.rotation = head
+        if let last = locations.last{
+            carMovement.ARCarMovement(marker: currentPositionMarker, oldCoordinate: last.coordinate, newCoordinate: currentLocation.coordinate, mapView: mapView, bearing: 0)
         }
+        
     }
-    
     
     func addMarker(place:GMSPlace){
         let marker = GMSMarker(position: place.coordinate)
@@ -238,18 +231,6 @@ class ViewController: UIViewController {
         }else{
             toMarker?.map = nil
             toMarker = marker
-        }
-    }
-    
-    func reverseGeoCode(coordinate:CLLocationCoordinate2D){
-//        let url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(coordinate.latitude),\(coordinate.longitude)&key=\(otherKey)"
-        GMSGeocoder().reverseGeocodeCoordinate(coordinate) { (response, error) in
-            print(response.debugDescription)
-            self.to_txf.text = response?.firstResult()?.lines?.first
-            self.reverseGeocodeResponse = response
-//            GMSPlacesClient().lookUpPlaceID("", callback: { (place, error) in
-//                self.toPlace = place
-//            })
         }
     }
     func getPolylineRouteForDemo(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){
@@ -282,7 +263,7 @@ class ViewController: UIViewController {
             }catch {
                 print("error in JSONSerialization")
             }
-
+            
         }
     }
     
@@ -302,7 +283,7 @@ class ViewController: UIViewController {
                 do {
                     print(String.init(data: data!, encoding: String.Encoding.utf8))
                     if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]{
-//                        print(json)
+                        //                        print(json)
                         guard let routes = json["routes"] as? NSArray else {
                             return
                         }
@@ -346,7 +327,7 @@ class ViewController: UIViewController {
         polyline.strokeColor = UIColor.blue
         polyline.map = mapView // Your map view
     }
-
+    
 }
 extension ViewController:ARCarMovementDelegate{
     func ARCarMovementMoved(_ Marker: GMSMarker) {
@@ -358,15 +339,8 @@ extension ViewController:ARCarMovementDelegate{
 
 
 extension ViewController:GMSMapViewDelegate{
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        currentPositionMarker.position = position.target
-        reverseGeoCode(coordinate: position.target)
-    }
-    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-        
-    }
+    
 }
-
 extension ViewController:UITextFieldDelegate{
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
